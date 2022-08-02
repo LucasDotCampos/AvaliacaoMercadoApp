@@ -18,16 +18,19 @@ import Otimo from "../../../assets/app/otimo.png";
 import { api } from "../../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function Avaliation({ navigation }) {
+export default function Avaliation({ navigation }: any) {
   const [disabledButton, setDisabledButton] = useState(false);
   const [screenTitle, setScreenTitle] = useState<any>();
 
   useEffect(() => {
-    AsyncStorage.getItem("@avaliacao:tituloTela").then((text) =>
-      setScreenTitle(text)
-    );
-  }, []);
+    const unsubscribe = navigation.addListener("focus", () => {
+      AsyncStorage.getItem("@avaliacao:tituloTela").then((text) => {
+        setScreenTitle(text);
+      });
+    });
 
+    return unsubscribe;
+  }, [navigation]);
   function settingsNavigation() {
     navigation.navigate("Login");
   }

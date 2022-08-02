@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "./styles";
 
-export default function Settings({ navigation }) {
+export default function Settings({ navigation }: any) {
   const [setor, setSetor] = useState("");
   const [dispositivo, setDispositivo] = useState("");
   const [nomeDaEmpresa, setNomeDaEmpresa] = useState("");
